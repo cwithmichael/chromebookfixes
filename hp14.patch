@@ -1,0 +1,38 @@
+--- chromeos_laptop.c	2014-02-11 13:55:20.193890238 -0600
++++ drivers/platform/chrome/chromeos_laptop.c	2014-02-11 13:31:39.933915672 -0600
+@@ -52,6 +52,7 @@
+ 	I2C_ADAPTER_SMBUS = 0,
+ 	I2C_ADAPTER_VGADDC,
+ 	I2C_ADAPTER_PANEL,
++	I2C_ADAPTER_I2C0,
+ };
+ 
+ struct i2c_peripheral {
+@@ -374,6 +375,13 @@
+ 	},
+ };
+ 
++static struct chromeos_laptop hp_chromebook_14 = {
++	.i2c_peripherals = {
++		/* Touchpad. */
++		{ .add = setup_cyapa_tp, I2C_ADAPTER_I2C0 },
++	},
++};
++
+ static struct chromeos_laptop acer_c7_chromebook = {
+ 	.i2c_peripherals = {
+ 		/* Touchpad. */
+@@ -431,6 +439,13 @@
+ 		_CBDD(chromebook_pixel),
+ 	},
+ 	{
++		.ident = "HP Chromebook 14",
++		.matches = {
++			DMI_MATCH(DMI_PRODUCT_NAME, "Falco"),
++		},
++		_CBDD(hp_chromebook_14),
++	},
++	{
+ 		.ident = "Acer C7 Chromebook",
+ 		.matches = {
+ 			DMI_MATCH(DMI_PRODUCT_NAME, "Parrot"),
