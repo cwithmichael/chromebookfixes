@@ -1,0 +1,9 @@
+Section "InputClass"
+        Identifier "touchpad catchall"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "synaptics"
+
+        Option "FingerLow" "10"
+        Option "FingerHigh" "20"
+EndSection
