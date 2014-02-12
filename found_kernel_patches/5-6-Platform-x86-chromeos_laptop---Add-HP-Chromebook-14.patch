@@ -1,14 +1,8 @@
---- chromeos_laptop.c	2014-02-11 13:55:20.193890238 -0600
-+++ drivers/platform/chrome/chromeos_laptop.c	2014-02-11 13:31:39.933915672 -0600
-@@ -52,6 +52,7 @@
- 	I2C_ADAPTER_SMBUS = 0,
- 	I2C_ADAPTER_VGADDC,
- 	I2C_ADAPTER_PANEL,
-+	I2C_ADAPTER_I2C0,
- };
- 
- struct i2c_peripheral {
-@@ -374,6 +375,13 @@
+diff --git a/drivers/platform/x86/chromeos_laptop.c b/drivers/platform/x86/chromeos_laptop.c
+index 57ded03..a9ab335 100644
+--- a/drivers/platform/x86/chromeos_laptop.c
++++ b/drivers/platform/x86/chromeos_laptop.c
+@@ -378,6 +378,13 @@ static struct chromeos_laptop chromebook_pixel = {
  	},
  };
  
@@ -22,7 +16,7 @@
  static struct chromeos_laptop acer_c7_chromebook = {
  	.i2c_peripherals = {
  		/* Touchpad. */
-@@ -431,6 +439,13 @@
+@@ -435,6 +442,13 @@ static struct dmi_system_id chromeos_laptop_dmi_table[] __initdata = {
  		_CBDD(chromebook_pixel),
  	},
  	{
